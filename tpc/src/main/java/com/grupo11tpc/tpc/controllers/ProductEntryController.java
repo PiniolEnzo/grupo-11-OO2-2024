@@ -16,7 +16,7 @@ import com.grupo11tpc.tpc.services.IProductEntryService;
 import com.grupo11tpc.tpc.services.IProductService;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("/stock")
 public class ProductEntryController {
 	
 	private IProductService productService;
@@ -30,7 +30,7 @@ public class ProductEntryController {
 		this.productEntryService = productEntryService;
 	}
 
-	@GetMapping("")
+	@GetMapping("/index")
 	public ModelAndView index() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_ENTRY_INDEX);
 		//Se envian todos los productos para dar a elegir sobre cual hacer el alta de stock
