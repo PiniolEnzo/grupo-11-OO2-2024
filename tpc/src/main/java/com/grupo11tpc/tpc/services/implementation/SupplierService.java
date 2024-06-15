@@ -1,5 +1,6 @@
 package com.grupo11tpc.tpc.services.implementation;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -21,5 +22,12 @@ public class SupplierService implements ISupplierService {
 	public Optional<Supplier> findById(int supplierId) {
 		return supplierRepository.findById(supplierId);
 	}
+
+	@Override
+	public List<Supplier> getAll() {
+		return supplierRepository.findAll();
+	}
+	
+	
 
 }
