@@ -38,9 +38,15 @@ public class ProductEntryService implements IProductEntryService {
 		productEntry.setReceivedAmount(productEntryDTO.getReceivedAmount());
 		productEntry.setReceivedAt(LocalDateTime.now());
 		productEntry.setPurchasePrice(productEntryDTO.getPurchasePrice());
+		
+		//Se agrega la cantidad recibida al producto
+		pr.setAmount(pr.getAmount()+productEntryDTO.getReceivedAmount());
+		
 		productEntry.setProduct(pr);
 		productEntry.setSupplier(sup);
 		
+		//Se guarda el producto actualizado
+		productRepository.save(pr);
 		productEntryRepository.save(productEntry);
 	}
 

@@ -9,7 +9,7 @@ public class ViewRouteHelper {
 	
 	//LOTE
 	public final static String PRODUCT_ENTRY_INDEX = "/stock/index";
-	public final static String PRODUCT_ENTRY_CREATE = "/stock/create";
+	public final static String PRODUCT_ENTRY_NEW = "/stock/new";
 
 	/**** Redirects ****/
 	public final static String ROUTE = "/index";

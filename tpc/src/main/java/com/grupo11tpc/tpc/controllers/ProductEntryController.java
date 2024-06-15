@@ -14,6 +14,7 @@ import com.grupo11tpc.tpc.dtos.ProductEntryDTO;
 import com.grupo11tpc.tpc.helpers.ViewRouteHelper;
 import com.grupo11tpc.tpc.services.IProductEntryService;
 import com.grupo11tpc.tpc.services.IProductService;
+import com.grupo11tpc.tpc.services.ISupplierService;
 
 @Controller
 @RequestMapping("/stock")
@@ -21,6 +22,7 @@ public class ProductEntryController {
 	
 	private IProductService productService;
 	private IProductEntryService productEntryService;
+	private ISupplierService supplierService;
 	
 	private ModelMapper modelMapper = new ModelMapper();
 	
@@ -35,6 +37,14 @@ public class ProductEntryController {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_ENTRY_INDEX);
 		//Se envian todos los productos para dar a elegir sobre cual hacer el alta de stock
 		mAV.addObject("products", productService.getAll());
+		return mAV;
+	}
+	
+	@GetMapping("/new")
+	public ModelAndView create() {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_ENTRY_NEW);
+		mAV.addObject("products", productService.getAll());
+		mAV.addObject("suppliers",supplierService.getAll());
 		return mAV;
 	}
 
