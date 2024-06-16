@@ -8,12 +8,17 @@
 <body>
 	<div class="container">
 		<h1 class="text-center mt-4">Productos con su stock</h1>
-		<div class="row mt-4">
-			<div class="col-md-3 mb-3" th:each="product : ${products}">
-				<h2 th:text="${product.name}"></h2>
-				<h4>Stock disponible: <b th:text="${product.amount}"></b></h4>
-				<button class="btn btn-outline-success mt-2">Agregar stock</button>
+		<div class="row mt-5 text-center">
+			<div class="col-md-4 mb-5 " th:each="stock : ${productEntries}">
+				<h2>Producto: <b th:text=" ${stock.product.name}"></b></h2>
+				<h4>Cantidad recibida: <b th:text="${stock.receivedAmount}"></b></h4>
+				<h4>Precio de compra: <b th:text="${stock.purchasePrice + '$'}"></b></h4>
+				<h4>Fecha de recepcion: <b th:text="${stock.receivedAt}"></b></h4>
+				<h4>Nombre del proveedor: <b th:text="${stock.supplier.name + ' '+ stock.supplier.lastname}"></b></h4>
 			</div>
+		</div>
+		<div class="d-flex justify-content-center">
+			<a th:href="@{/stock/new}" class="btn btn-primary">Alta de nuevo lote de stock</a>
 		</div>
 	</div>
 </body>

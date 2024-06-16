@@ -1,0 +1,48 @@
+<!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Stock</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+</html>
+<body>
+	<div class="container">
+		<div class="d-flex justify-content-end mt-3">
+			<a th:href="@{/stock/index}" class="btn btn-outline-primary">Volver</a>
+		</div>
+		<h1 class="text-center mt-5">Alta de nuevo lote de stock</h1>
+		<div class="row mt-5">
+			<div class="col-md-12 ">
+				<form action="#" th:action="@{/stock/create}" th:object="${stock}"
+					method="post">
+					<div class="form-group mb-3">
+						<label>Selecciona un producto</label> <select class="form-control"
+							th:field="*{productId}">
+							<option th:each="product : ${products}" th:value="${product.id}"
+								th:text="${product.name}"></option>
+						</select>
+					</div>
+					<div class="form-group mb-3">
+						<label>Selecciona un proveedor</label> <select
+							class="form-control" th:field="*{supplierId}">
+							<option th:each="supplier : ${suppliers}"
+								th:value="${supplier.id}"
+								th:text="${supplier.name + ' '+ supplier.lastname}"></option>
+						</select>
+					</div>
+					<div class="form-group mb-3">
+						<label>Ingresa el precio de compra</label> <input type="number"
+							class="form-control" placeholder="Ingresa el precio de compra"
+							th:field="*{purchasePrice}">
+					</div>
+					<div class="form-group mb-3 ">
+						<label>Ingresa la cantidad recibida</label> <input type="number"
+							class="form-control" placeholder="Ingresa la cantidad recibida"
+							th:field="*{receivedAmount}">
+					</div>
+					<button type="submit" class="btn btn-primary">Dar de alta</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>

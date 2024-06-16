@@ -26,23 +26,26 @@ public class ProductEntryController {
 	
 	private ModelMapper modelMapper = new ModelMapper();
 	
-	public ProductEntryController(IProductService productService, IProductEntryService productEntryService) {
-		super();
+
+	public ProductEntryController(IProductService productService, IProductEntryService productEntryService,
+			ISupplierService supplierService) {
 		this.productService = productService;
 		this.productEntryService = productEntryService;
+		this.supplierService = supplierService;
 	}
 
 	@GetMapping("/index")
 	public ModelAndView index() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_ENTRY_INDEX);
-		//Se envian todos los productos para dar a elegir sobre cual hacer el alta de stock
-		mAV.addObject("products", productService.getAll());
+		//Se envia el historico de altas de stock
+		mAV.addObject("productEntries", productEntryService.getAll());
 		return mAV;
 	}
 	
 	@GetMapping("/new")
 	public ModelAndView create() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_ENTRY_NEW);
+		mAV.addObject("stock", new ProductEntryDTO());
 		mAV.addObject("products", productService.getAll());
 		mAV.addObject("suppliers",supplierService.getAll());
 		return mAV;
@@ -51,7 +54,7 @@ public class ProductEntryController {
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("stock") ProductEntryDTO productEntryDto) {
 		productEntryService.saveProductEntry(modelMapper.map(productEntryDto, ProductEntryDTO.class));
-		return new RedirectView(ViewRouteHelper.ROUTE);
+		return new RedirectView(ViewRouteHelper.PRODUCT_ENTRY_INDEX);
 	}
 
 }

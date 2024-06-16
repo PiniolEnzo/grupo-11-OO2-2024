@@ -1,6 +1,7 @@
 package com.grupo11tpc.tpc.services.implementation;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -48,6 +49,11 @@ public class ProductEntryService implements IProductEntryService {
 		//Se guarda el producto actualizado
 		productRepository.save(pr);
 		productEntryRepository.save(productEntry);
+	}
+
+	@Override
+	public List<ProductEntry> getAll() {
+		return productEntryRepository.findAll();
 	}
 
 }

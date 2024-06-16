@@ -1,5 +1,7 @@
 package com.grupo11tpc.tpc.dtos;
 
+import java.time.LocalDateTime;
+
 import lombok.Data;
 
 @Data
