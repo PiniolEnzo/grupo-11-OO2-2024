@@ -6,6 +6,7 @@ public class ViewRouteHelper {
 	public final static String PRODUCT_INDEX = "product/index";
 	public final static String PRODUCT_NEW = "product/new";
 	public final static String PRODUCT_UPDATE = "product/update";
+	public final static String PRODUCT_REPORT = "product/report";
 
 	/**** Redirects ****/
 	public final static String ROUTE = "/index";

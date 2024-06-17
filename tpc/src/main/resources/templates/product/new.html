@@ -10,7 +10,7 @@
             Productos
             <small class="fs-3 text-body-secondary">Crear un nuevo producto</small>
         </h1>
-        <div class="container w">
+        <div class="container">
             <form class="bg-success-subtle rounded px-5 py-3 mx-auto row shadow p-3 mb-5 bg-body-success rounded" th:action="@{/product/new}" th:object="${product}" method="post">
                 
                 <div class="form-group col-3 mb-3 mt-2">
@@ -21,17 +21,21 @@
                     <label class="fw-medium" for="description">Descripción</label>
                     <input type="text" id="description" name="description" class="form-control form-control-sm" th:field="*{description}" required/>
                 </div>
-                <div class="form-group col-4 mb-3">
+                <div class="form-group col-3 mb-3">
                     <label class="fw-medium" for="cost">Costo de compra</label>
                     <input type="number" id="cost" name="cost" class="form-control form-control-sm" min="0" th:field="*{cost}" required/>
                 </div>
-                <div class="form-group col-4 mb-3">
+                <div class="form-group col-3 mb-3">
                     <label class="fw-medium" for="salePrice">Precio de venta</label>
                     <input type="number" id="salePrice" name="salePrice" class="form-control form-control-sm" th:field="*{salePrice}" required/>
                 </div>
-                <div class="form-group col-4 mb-3">
+                <div class="form-group col-3 mb-3">
                     <label class="fw-medium" for="amount">Cantidad</label>
                     <input type="number" id="amount" name="amount" class="form-control form-control-sm" min="0" th:field="*{amount}" required/>
+                </div>
+				<div class="form-group col-3 mb-3">
+                    <label class="fw-medium" for="minimalAmount">Cantidad mínima</label>
+                    <input type="number" id="minimalAmount" name="minimalAmount" class="form-control form-control-sm" min="0" th:field="*{minimalAmount}" required/>
                 </div>
                 <div class="d-flex justify-content-center">
 					<a class="my-3 me-3 btn btn-outline-secondary fw-medium text-uppercase" th:href="@{/product/index}" role="button">Volver</a>

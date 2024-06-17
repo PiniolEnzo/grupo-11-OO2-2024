@@ -19,6 +19,7 @@
                     <th>Costo</th>
                     <th>Precio de venta</th>
                     <th>Cantidad</th>
+					<th>Cantidad mínima</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
@@ -30,6 +31,7 @@
                     <td th:text="${product.purchaseCost}"></td>
                     <td th:text="${product.salePrice}"></td>
                     <td th:text="${product.amount}"></td>
+					<td th:text="${product.minimalAmount}"></td>
                     <td>
                         <a th:href="@{/product/delete/{id}(id=${product.id})}" onclick="return confirm('¿Estás seguro/a de querer eliminar este producto?')" class="btn btn-danger btn-sm">Eliminar</a>
                         <a th:href="@{/product/update/{id}(id=${product.id})}" class="btn btn-primary btn-sm">Editar</a>
