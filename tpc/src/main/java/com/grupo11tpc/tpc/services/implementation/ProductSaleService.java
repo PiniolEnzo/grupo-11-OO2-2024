@@ -24,9 +24,6 @@ public class ProductSaleService implements IProductSaleService{
 		this.productSaleRepository = productSaleRepository;
 	}
 
-	@Value("${product.minimal.amount}")
-	private int minimalAmount;
-
 	//Generar una nueva compra de productos
 	@Override
 	public void sale(ProductSaleDTO productSaleDto) throws Exception {
@@ -43,10 +40,6 @@ public class ProductSaleService implements IProductSaleService{
 		ps.setSaleDate(LocalDate.now());
 		
 		pr.setAmount(pr.getAmount()-productSaleDto.getAmount());
-		
-		if(pr.getAmount() < minimalAmount) {
-			//Pedido de aprovisionamiento
-		}
 		
 		productRepository.save(pr);
 		productSaleRepository.save(ps);
