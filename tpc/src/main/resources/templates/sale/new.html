@@ -1,0 +1,34 @@
+<!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Stock</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+</html>
+<body>
+	<div class="container">
+		<div class="d-flex justify-content-end mt-3">
+			<a th:href="@{/sale/index}" class="btn btn-outline-primary">Volver</a>
+		</div>
+		<h1 class="text-center mt-5">Compra de producto</h1>
+		<div class="row mt-5">
+			<div class="col-md-12 ">
+				<form action="#" th:action="@{/sale/create}" th:object="${productSaleDto}" 
+					method="post">
+					<div class="form-group mb-3">
+						<label>Producto ID</label> <input type="number"  th:value="${productId}"  
+							style="background-color: #ccc"
+							class="form-control"  readonly="true"
+							th:field="*{productId}">
+					</div>
+					<div class="form-group mb-3 ">
+						<label>Ingresa la cantidad a comprar</label> <input type="number"
+							class="form-control" placeholder="Ingresa la cantidad a comprar"
+							th:field="*{amount}">
+					</div>
+					<button type="submit" class="btn btn-primary">Comprar</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>

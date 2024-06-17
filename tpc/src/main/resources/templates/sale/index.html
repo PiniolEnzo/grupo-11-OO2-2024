@@ -21,8 +21,8 @@
 				<h4>
 					Cantidad disponible <b th:text="${product.amount}"></b>
 				</h4>
-				<div class="d-flex justify-content-center">
-					<a th:href="@{/product/new}" class="btn btn-outline-primary">Comprar</a>
+				<div class="d-flex justify-content-center mt-2">
+					<a th:href="@{/sale/new/{productId}(productId=${product.id})}" class="btn btn-outline-primary">Comprar</a>
 				</div>
 			</div>
 		</div>

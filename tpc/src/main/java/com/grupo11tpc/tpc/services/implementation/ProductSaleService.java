@@ -3,13 +3,16 @@ package com.grupo11tpc.tpc.services.implementation;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
+import com.grupo11tpc.tpc.dtos.ProductSaleDTO;
 import com.grupo11tpc.tpc.entities.Product;
 import com.grupo11tpc.tpc.entities.ProductSale;
 import com.grupo11tpc.tpc.repositories.IProductRepository;
 import com.grupo11tpc.tpc.repositories.IProductSaleRepository;
 import com.grupo11tpc.tpc.services.IProductSaleService;
 
+@Service
 public class ProductSaleService implements IProductSaleService{
 	
 	private IProductRepository productRepository;
@@ -26,20 +29,20 @@ public class ProductSaleService implements IProductSaleService{
 
 	//Generar una nueva compra de productos
 	@Override
-	public void sale(int amount, int productId) throws Exception {
+	public void sale(ProductSaleDTO productSaleDto) throws Exception {
 		//Se verifica que exista el producto
-		Product pr = productRepository.findById(productId).orElseThrow();
+		Product pr = productRepository.findById(productSaleDto.getProductId()).orElseThrow();
 		//Se verifica que se pueda hacer la venta
-		if(amount > pr.getAmount()) 
+		if(productSaleDto.getAmount() > pr.getAmount()) 
 			throw new Exception("No hay cantidad disponible para la venta");
 		
 		ProductSale ps = new ProductSale();
 		
 		ps.setProduct(pr);
-		ps.setAmount(amount);
+		ps.setAmount(productSaleDto.getAmount());
 		ps.setSaleDate(LocalDate.now());
 		
-		pr.setAmount(pr.getAmount()-amount);
+		pr.setAmount(pr.getAmount()-productSaleDto.getAmount());
 		
 		if(pr.getAmount() < minimalAmount) {
 			//Pedido de aprovisionamiento
