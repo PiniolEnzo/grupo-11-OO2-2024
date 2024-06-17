@@ -9,7 +9,7 @@ import com.grupo11tpc.tpc.entities.Supplier;
 import com.grupo11tpc.tpc.repositories.ISupplierRepository;
 import com.grupo11tpc.tpc.services.ISupplierService;
 
-@Service
+@Service("supplierService")
 public class SupplierService implements ISupplierService {
 	
 	private ISupplierRepository supplierRepository;

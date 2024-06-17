@@ -14,7 +14,7 @@ import com.grupo11tpc.tpc.repositories.IProductRepository;
 import com.grupo11tpc.tpc.repositories.ISupplierRepository;
 import com.grupo11tpc.tpc.services.IProductEntryService;
 
-@Service
+@Service("productEntryService")
 public class ProductEntryService implements IProductEntryService {
 	
 	private IProductEntryRepository productEntryRepository;
