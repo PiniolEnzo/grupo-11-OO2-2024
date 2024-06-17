@@ -7,9 +7,13 @@ public class ViewRouteHelper {
 	public final static String PRODUCT_NEW = "product/new";
 	public final static String PRODUCT_UPDATE = "product/update";
 	
-	//LOTE
+	//STOCK
 	public final static String PRODUCT_ENTRY_INDEX = "/stock/index";
 	public final static String PRODUCT_ENTRY_NEW = "/stock/new";
+	
+	//VENTA
+	public final static String PRODUCT_SALE_INDEX = "/sale/index";
+	public final static String PRODUCT_SALE_NEW  = "/sale/new";
 
 	/**** Redirects ****/
 	public final static String ROUTE = "/index";

@@ -13,4 +13,9 @@ spring:
   thymeleaf:
     check-template-location: false
     cache: false
+   
+product:
+    minimal:
+       amount: 10
+       
     
