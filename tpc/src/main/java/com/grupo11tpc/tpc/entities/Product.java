@@ -1,6 +1,9 @@
 package com.grupo11tpc.tpc.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -32,7 +35,7 @@ public class Product {
 
 	private String description;
 
-//	private List<String> categories;
+//	private List<String> categories = new ArrayList<>();
 
 	private int amount;
 
