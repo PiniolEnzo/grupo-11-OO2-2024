@@ -12,7 +12,7 @@ import com.grupo11tpc.tpc.repositories.IProductRepository;
 import com.grupo11tpc.tpc.repositories.IProductSaleRepository;
 import com.grupo11tpc.tpc.services.IProductSaleService;
 
-@Service
+@Service("productSaleService")
 public class ProductSaleService implements IProductSaleService{
 	
 	private IProductRepository productRepository;
