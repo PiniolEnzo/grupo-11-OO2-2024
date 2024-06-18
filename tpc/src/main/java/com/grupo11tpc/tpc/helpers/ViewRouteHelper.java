@@ -15,6 +15,11 @@ public class ViewRouteHelper {
 	//VENTA
 	public final static String PRODUCT_SALE_INDEX = "/sale/index";
 	public final static String PRODUCT_SALE_NEW  = "/sale/new";
+	public final static String PRODUCT_SALE_LIST  = "/sale/list";
+	
+	//PROVEEDOR
+	public final static String SUPPLIER_INDEX = "/supplier/index";
+	public final static String SUPPLIER_NEW  = "/supplier/new";
 	
 	//LOGIN
 	public final static String USER_LOGIN  = "/login/form";
@@ -26,4 +31,5 @@ public class ViewRouteHelper {
 	/**** Redirects ****/
 	public final static String ROUTE = "/index";
 	public final static String PRODUCT_ROOT = "/product";
+	public final static String SUPPLIER_ROOT = "/supplier";
 }

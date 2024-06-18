@@ -1,8 +1,8 @@
 package com.grupo11tpc.tpc.services.implementation;
 
 import java.time.LocalDate;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.grupo11tpc.tpc.dtos.ProductSaleDTO;
@@ -43,6 +43,11 @@ public class ProductSaleService implements IProductSaleService{
 		
 		productRepository.save(pr);
 		productSaleRepository.save(ps);
+	}
+
+	@Override
+	public List<ProductSale> getAll() {
+		return productSaleRepository.findAll();
 	}
 
 }

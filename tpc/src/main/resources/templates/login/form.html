@@ -13,7 +13,7 @@
             <small class="fs-3 text-body-secondary">iniciar sesión</small>
         </h1>
         <div class="container">
-            <form style="max-width: 330px;" class="m-auto bg-success-subtle rounded px-5 py-3 row shadow">
+            <form th:action="@{/loginprocess}" method="post" style="max-width: 330px;" class="m-auto bg-success-subtle rounded px-5 py-3 row shadow">
                 <div class="my-3">
                     <label class="fw-medium" for="username">Nombre de usuario</label>
                     <input type="text" class="form-control form-control-sm" id="username" placeholder="">

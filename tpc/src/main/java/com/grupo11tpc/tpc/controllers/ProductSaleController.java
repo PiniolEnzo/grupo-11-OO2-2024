@@ -1,6 +1,5 @@
 package com.grupo11tpc.tpc.controllers;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,13 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.grupo11tpc.tpc.dtos.ProductEntryDTO;
 import com.grupo11tpc.tpc.dtos.ProductSaleDTO;
 import com.grupo11tpc.tpc.helpers.ViewRouteHelper;
-import com.grupo11tpc.tpc.services.IProductEntryService;
 import com.grupo11tpc.tpc.services.IProductSaleService;
 import com.grupo11tpc.tpc.services.IProductService;
-import com.grupo11tpc.tpc.services.ISupplierService;
 
 @Controller
 @RequestMapping("/sale")
@@ -25,9 +21,6 @@ public class ProductSaleController {
 	private IProductService productService;
 	private IProductSaleService productSaleService;
 	
-	private ModelMapper modelMapper = new ModelMapper();
-
-
 	public ProductSaleController(IProductService productService, IProductSaleService productSaleService) {
 		super();
 		this.productService = productService;
@@ -38,6 +31,13 @@ public class ProductSaleController {
 	public ModelAndView index() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_SALE_INDEX);
 		mAV.addObject("products", productService.getAll());
+		return mAV;
+	}
+	
+	@GetMapping("/list")
+	public ModelAndView list() {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_SALE_LIST);
+		mAV.addObject("productSales", productSaleService.getAll());
 		return mAV;
 	}
 	

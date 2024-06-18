@@ -75,6 +75,11 @@ public class ProductController {
 		Product productToUpdate = productService.findById(product.getId()).get();
 		if(productToUpdate != null ) {
 			productToUpdate.setName(product.getName());
+			productToUpdate.setDescription(product.getDescription());
+			productToUpdate.setAmount(product.getAmount());
+			productToUpdate.setMinimalAmount(product.getMinimalAmount());
+			productToUpdate.setPurchaseCost(product.getPurchaseCost());
+			productToUpdate.setSalePrice(product.getSalePrice());
 			productService.insertOrUpdate(productToUpdate);
 		}
 		return new RedirectView(ViewRouteHelper.PRODUCT_ROOT);
