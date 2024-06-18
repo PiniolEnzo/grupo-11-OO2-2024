@@ -1,6 +1,7 @@
 package com.grupo11tpc.tpc.controllers;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,6 +32,7 @@ public class SupplyOrderController {
 		this.supplierService = supplierService; 
 	} 
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/index") 
 	public ModelAndView index() { 
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.SUPPLY_ORDER_INDEX); 
@@ -38,6 +40,7 @@ public class SupplyOrderController {
 		return mAV; 
 	} 
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/new") 
 	public ModelAndView create() { 
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.SUPPLY_ORDER_NEW); 
@@ -46,7 +49,7 @@ public class SupplyOrderController {
 		mAV.addObject("suppliers",supplierService.getAll()); 
 		return mAV; 
 	}
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/create") 
 	public RedirectView create(@ModelAttribute("supplyOrder") SupplyOrderDTO supplyOrderDto) { 
 		supplyOrderService.insert(modelMapper.map(supplyOrderDto, SupplyOrderDTO.class)); 

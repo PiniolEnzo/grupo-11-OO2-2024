@@ -3,6 +3,8 @@ package com.grupo11tpc.tpc.services.implementation;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.grupo11tpc.tpc.dtos.SupplyOrderDTO;
 import com.grupo11tpc.tpc.entities.Product;
 import com.grupo11tpc.tpc.entities.Supplier;
@@ -12,6 +14,7 @@ import com.grupo11tpc.tpc.repositories.ISupplierRepository;
 import com.grupo11tpc.tpc.repositories.ISupplyOrderRepository;
 import com.grupo11tpc.tpc.services.ISupplyOrderService;
 
+@Service
 public class SupplyOrderService implements ISupplyOrderService {
 	private ISupplyOrderRepository supplyOrderRepository;
 	private IProductRepository productRepository;
