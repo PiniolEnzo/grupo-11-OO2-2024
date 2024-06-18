@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container mt-5 px-5">
+        <h1 class="text-uppercase text-center py-2 my-3">
+            usuario
+            <small class="fs-3 text-body-secondary">iniciar sesión</small>
+        </h1>
+        <div class="container">
+            <form style="max-width: 330px;" class="m-auto bg-success-subtle rounded px-5 py-3 row shadow">
+                <div class="my-3">
+                    <label class="fw-medium" for="username">Nombre de usuario</label>
+                    <input type="text" class="form-control form-control-sm" id="username" placeholder="">
+                    
+                </div>
+                <div class="mb-3">
+                    <label class="fw-medium" for="password">Contraseña</label>
+                    <input type="password" class="form-control form-control-sm" id="password" placeholder="">
+                    <div th:if="${error}" class="fs-6 fw-light fst-italic text-center text-danger">
+                        Credenciales inválidas
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <button class="my-2 btn btn-outline-primary fw-medium text-uppercase" type="submit">Iniciar</button>
+                </div>
+                
+                <div th:if="${logout}" class="mt-2 fs-6 fw-light fst-italic text-center text-success">
+                    Has cerrado tu sesión
+                </div>
+            </form>        
+        </div>
+    </div>
+</body>
+</html>

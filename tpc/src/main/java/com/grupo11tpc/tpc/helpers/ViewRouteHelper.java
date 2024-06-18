@@ -17,7 +17,7 @@ public class ViewRouteHelper {
 	public final static String PRODUCT_SALE_NEW  = "/sale/new";
 	
 	//LOGIN
-	public final static String USER_LOGIN  = "/login/";
+	public final static String USER_LOGIN  = "/login/form";
 
 	//PEDIDO DE APROVISIONAMIENTO
 	public final static String SUPPLY_ORDER_INDEX = "/supply_order/index";

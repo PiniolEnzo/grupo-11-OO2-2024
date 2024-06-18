@@ -1,5 +1,7 @@
 package com.grupo11tpc.tpc.controllers;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +26,9 @@ public class UserController {
 	}
 
 	@GetMapping("/loginsuccess")
-	public String loginCheck() {
-		//Para que cuando el usuario inicie sesion vaya al apartado de productos
-		return ViewRouteHelper.PRODUCT_SALE_INDEX;
-	}
+	public String loginCheck(@AuthenticationPrincipal UserDetails userDetails) {
+        return userDetails.getAuthorities().stream()
+            .anyMatch(auth -> auth.getAuthority().equals("ROLE_ADMIN")) ? 
+            ViewRouteHelper.PRODUCT_INDEX : ViewRouteHelper.PRODUCT_SALE_INDEX;
+    }
 }
