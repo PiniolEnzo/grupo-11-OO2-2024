@@ -1,0 +1,30 @@
+<!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Productos</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+</html>
+<body>
+	<div class="container">
+		<h1 class="text-center mt-4">Productos</h1>
+		<div class="row mt-5 text-center">
+			<div class="col-md-4 mb-5 " th:each="product : ${products}">
+				<h2>
+					Producto: <b th:text=" ${product.name}"></b>
+				</h2>
+				<h4>Descripcion:</h4>
+				<p th:text="${product.description}" class="mt-2"></p>
+				<h4>
+					Precio: <b th:text="${product.salePrice + '$'}"></b>
+				</h4>
+				<h4>
+					Cantidad disponible <b th:text="${product.amount}"></b>
+				</h4>
+				<div class="d-flex justify-content-center mt-2">
+					<a th:href="@{/sale/new/{productId}(productId=${product.id})}" class="btn btn-outline-primary">Comprar</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
