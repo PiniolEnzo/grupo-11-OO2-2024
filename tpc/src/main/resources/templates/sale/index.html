@@ -7,6 +7,9 @@
 </html>
 <body>
 	<div class="container">
+		<form th:action="@{/logout}" method="post" class="d-flex justify-content-end mt-3">
+			<button class="btn btn-outline-success logout-btn" type="submit">Log Out</button>
+		</form>
 		<h1 class="text-center mt-4">Productos</h1>
 		<div class="row mt-5 text-center">
 			<div class="col-md-4 mb-5 " th:each="product : ${products}">

@@ -28,6 +28,7 @@ public class ProductSaleController {
 		this.productSaleService = productSaleService;
 	}
 
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping("/index")
 	public ModelAndView index() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_SALE_INDEX);
@@ -55,6 +56,7 @@ public class ProductSaleController {
 	}
 
 	//Generar compra de productos
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("productSaleDto") ProductSaleDTO productSaleDto) {
 		try {

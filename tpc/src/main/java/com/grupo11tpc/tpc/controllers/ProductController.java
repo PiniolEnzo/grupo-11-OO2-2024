@@ -93,7 +93,7 @@ public class ProductController {
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PostMapping("/delete/{id}")
+	@GetMapping("/delete/{id}")
 	public RedirectView delete(@PathVariable("id") int id) {
 		productService.remove(id);
 		return new RedirectView(ViewRouteHelper.PRODUCT_ROOT);

@@ -24,7 +24,8 @@ public class ProductSale {
 	private int id;
 	private int amount;
 	private LocalDate saleDate;
-	@ManyToOne(fetch = FetchType.LAZY)
+	//si o si necesitamos traer los productos para listar las ventas
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="product_id")
 	private Product product;
 }
