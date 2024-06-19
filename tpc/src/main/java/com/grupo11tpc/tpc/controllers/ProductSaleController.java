@@ -35,7 +35,7 @@ public class ProductSaleController {
 		return mAV;
 	}
 	
-
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/list")
 	public ModelAndView list() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_SALE_LIST);
@@ -44,7 +44,7 @@ public class ProductSaleController {
 	}
 	
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+
 	@GetMapping("/new/{productId}")
 	public ModelAndView create(@PathVariable int productId) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_SALE_NEW);
@@ -54,7 +54,6 @@ public class ProductSaleController {
 		return mAV;
 	}
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	//Generar compra de productos
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("productSaleDto") ProductSaleDTO productSaleDto) {

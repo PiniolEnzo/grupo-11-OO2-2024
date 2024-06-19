@@ -105,7 +105,8 @@
 			<form class="bg-success-subtle rounded px-5 py-3 mx-auto row shadow mb-5" th:action="@{/product/update}" th:object="${product}" method="post">
 				<div class="form-group col-2 mb-3 mt-2">
 					<label for="id">Código</label>
-					<input class="form-control" id="id" name="id" type="text" th:value="*{id}" th:field="*{id}" disabled readonly />
+					<input class="form-control" id="id" name="id" type="number" th:value="*{id}" th:field="*{id}"  readonly 
+					style="background-color:#ddd" />
 				</div>
 				<div class="form-group col-10 mb-3 mt-2">
 					<label for="name">Nombre</label>

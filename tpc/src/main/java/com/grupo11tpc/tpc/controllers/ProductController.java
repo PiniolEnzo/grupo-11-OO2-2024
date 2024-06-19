@@ -80,6 +80,7 @@ public class ProductController {
 	public RedirectView update(@ModelAttribute("product") ProductDTO productDTO) {
 		Product productToUpdate = modelMapper.map(productService.findById(productDTO.getId()).get(), Product.class);
 		if(productToUpdate != null ) {
+			productToUpdate.setId(productDTO.getId());
 			productToUpdate.setName(productDTO.getName());
 			productToUpdate.setDescription(productDTO.getDescription());
 			productToUpdate.setAmount(productDTO.getAmount());
