@@ -14,14 +14,14 @@
         </h1>
         <div class="container">
             <form th:action="@{/loginprocess}" method="post" style="max-width: 330px;" class="m-auto bg-success-subtle rounded px-5 py-3 row shadow">
+
                 <div class="my-3">
                     <label class="fw-medium" for="username">Nombre de usuario</label>
-                    <input type="text" class="form-control form-control-sm" id="username" placeholder="">
-                    
+                    <input type="text" class="form-control form-control-sm" id="username" name="username" placeholder="" required>
                 </div>
                 <div class="mb-3">
                     <label class="fw-medium" for="password">Contraseña</label>
-                    <input type="password" class="form-control form-control-sm" id="password" placeholder="">
+                    <input type="password" class="form-control form-control-sm" id="password" name="password" placeholder="" required>
                     <div th:if="${error}" class="fs-6 fw-light fst-italic text-center text-danger">
                         Credenciales inválidas
                     </div>

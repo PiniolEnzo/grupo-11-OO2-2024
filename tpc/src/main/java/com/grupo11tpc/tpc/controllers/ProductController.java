@@ -1,6 +1,7 @@
 package com.grupo11tpc.tpc.controllers;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,7 @@ public class ProductController {
 		return mAV;
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/new")
 	public ModelAndView create() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_NEW);
@@ -40,12 +42,14 @@ public class ProductController {
 		return mAV;
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/create")
 	public RedirectView create(Product product) {
 		productService.insertOrUpdate(product);
 		return new RedirectView(ViewRouteHelper.PRODUCT_ROOT);
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/{id}")
 	public ModelAndView get(@PathVariable("id") int id) throws Exception {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_UPDATE);
@@ -69,7 +73,8 @@ public class ProductController {
 		mAV.addObject("product", productDTO);
 		return mAV;
 	}
-
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/update")
 	public RedirectView update(Product product) throws Exception {
 		Product productToUpdate = productService.findById(product.getId()).get();
@@ -85,6 +90,7 @@ public class ProductController {
 		return new RedirectView(ViewRouteHelper.PRODUCT_ROOT);
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/delete/{id}")
 	public RedirectView delete(@PathVariable("id") int id) {
 		productService.remove(id);

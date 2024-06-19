@@ -1,5 +1,7 @@
 package com.grupo11tpc.tpc.controllers;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,6 +36,7 @@ public class ProductSaleController {
 		return mAV;
 	}
 	
+
 	@GetMapping("/list")
 	public ModelAndView list() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_SALE_LIST);
@@ -41,6 +44,8 @@ public class ProductSaleController {
 		return mAV;
 	}
 	
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/new/{productId}")
 	public ModelAndView create(@PathVariable int productId) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_SALE_NEW);
@@ -50,6 +55,7 @@ public class ProductSaleController {
 		return mAV;
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	//Generar compra de productos
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("productSaleDto") ProductSaleDTO productSaleDto) {

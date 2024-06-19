@@ -34,7 +34,7 @@ public class SecurityConfiguration {
 				.cors(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests(auth -> {
 					auth.requestMatchers("/css/*", "/imgs/*", "/js/*", "/vendor/bootstrap/css/*",
-							"/vendor/jquery/*", "/sale/*").permitAll();
+							"/vendor/jquery/*").permitAll();
 					auth.anyRequest().authenticated();
 				})
 				.formLogin(login -> {

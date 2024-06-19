@@ -1,6 +1,7 @@
 package com.grupo11tpc.tpc.controllers;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,6 +34,7 @@ public class ProductEntryController {
 		this.supplierService = supplierService;
 	}
 
+	
 	@GetMapping("/index")
 	public ModelAndView index() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_ENTRY_INDEX);
@@ -41,6 +43,7 @@ public class ProductEntryController {
 		return mAV;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/new")
 	public ModelAndView create() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_ENTRY_NEW);
@@ -49,7 +52,8 @@ public class ProductEntryController {
 		mAV.addObject("suppliers",supplierService.getAll());
 		return mAV;
 	}
-
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("stock") ProductEntryDTO productEntryDto) {
 		productEntryService.saveProductEntry(modelMapper.map(productEntryDto, ProductEntryDTO.class));
