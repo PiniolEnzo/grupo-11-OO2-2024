@@ -12,5 +12,6 @@ public class ProductDTO {
 	private int amount;
 	private int minimalAmount;
 	private String description;
+	private double purchaseCost;
 	private double salePrice;
 }

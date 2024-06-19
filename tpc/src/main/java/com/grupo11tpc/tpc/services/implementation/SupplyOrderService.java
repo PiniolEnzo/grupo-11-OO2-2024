@@ -20,6 +20,12 @@ public class SupplyOrderService implements ISupplyOrderService {
 	private IProductRepository productRepository;
 	private ISupplierRepository supplierRepository;
 	
+	public SupplyOrderService(ISupplyOrderRepository supplyOrderRepository,IProductRepository productRepository,ISupplierRepository supplierRepository) {
+		this.supplyOrderRepository = supplyOrderRepository;
+		this.productRepository = productRepository;
+		this.supplierRepository = supplierRepository;
+	}
+	
 	@Override
 	public List<SupplyOrder> getAll() {
 		

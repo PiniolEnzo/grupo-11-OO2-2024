@@ -4,45 +4,140 @@
 <title>Stock</title>
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
-</html>
+
 <body>
-	<div class="container">
-		<div class="d-flex justify-content-end mt-3">
-			<a th:href="@{/stock/index}" class="btn btn-outline-primary">Volver</a>
-		</div>
-		<h1 class="text-center mt-5">Alta de nuevo lote de stock</h1>
-		<div class="row mt-5">
-			<div class="col-md-12 ">
-				<form action="#" th:action="@{/stock/create}" th:object="${stock}"
-					method="post">
-					<div class="form-group mb-3">
-						<label>Selecciona un producto</label> <select class="form-control"
-							th:field="*{productId}">
-							<option th:each="product : ${products}" th:value="${product.id}"
-								th:text="${product.name}"></option>
-						</select>
+	<nav class="my-3 mx-4 navbar navbar-expand-lg fixed-top bg-success-subtle rounded">
+			<div class="container-fluid">
+				<a class="navbar-brand me-auto" href="#" style="font-family: 'Times New Roman', Times, serif;">Grupo 11</a>
+				<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+					aria-labelledby="offcanvasNavbarLabel">
+					<div class="offcanvas-header">
+						<h5 class="offcanvas-title" id="offcanvasNavbarLabel"
+							style="font-family: 'Times New Roman', Times, serif;">Grupo 11</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 					</div>
-					<div class="form-group mb-3">
-						<label>Selecciona un proveedor</label> <select
-							class="form-control" th:field="*{supplierId}">
-							<option th:each="supplier : ${suppliers}"
-								th:value="${supplier.id}"
-								th:text="${supplier.name + ' '+ supplier.lastname}"></option>
-						</select>
+					<div class="offcanvas-body">
+						<ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+									aria-expanded="false">
+									Productos
+								</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" th:href="@{/product}">Ver la lista</a></li>
+									<li>
+										<hr class="dropdown-divider">
+									</li>
+									<li><a class="dropdown-item" th:href="@{/product/new}">Agregar uno nuevo</a></li>
+									<li>
+										<hr class="dropdown-divider">
+									</li>
+									<li><a class="dropdown-item" th:href="@{/product/report}">Reportes</a></li>
+								</ul>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+									aria-expanded="false">
+									Proveedores
+								</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" th:href="@{/supplier/index}">Ver la lista</a></li>
+									<li>
+										<hr class="dropdown-divider">
+									</li>
+									<li><a class="dropdown-item" th:href="@{/supplier/new}">Agregar uno nuevo</a></li>
+								</ul>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+									aria-expanded="false">
+									Pedidos
+								</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" th:href="@{/supply-order}">Ver la lista</a></li>
+									<li>
+										<hr class="dropdown-divider">
+									</li>
+									<li><a class="dropdown-item" th:href="@{/supply-order/new}">Agregar uno nuevo</a></li>
+								</ul>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+									aria-expanded="false">
+									Ventas
+								</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" th:href="@{/sale/list}">Ver la lista</a></li>
+								</ul>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+									aria-expanded="false">
+									Ingresos
+								</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" th:href="@{/stock/index}">Ver la lista</a></li>
+									<li>
+										<hr class="dropdown-divider">
+									</li>
+									<li><a class="dropdown-item" th:href="@{/stock/new}">Agregar uno nuevo</a></li>
+								</ul>
+							</li>
+						</ul>
 					</div>
-					<div class="form-group mb-3">
-						<label>Ingresa el precio de compra</label> <input type="number"
-							class="form-control" placeholder="Ingresa el precio de compra"
-							th:field="*{purchasePrice}">
-					</div>
-					<div class="form-group mb-3 ">
-						<label>Ingresa la cantidad recibida</label> <input type="number"
-							class="form-control" placeholder="Ingresa la cantidad recibida"
-							th:field="*{receivedAmount}">
-					</div>
-					<button type="submit" class="btn btn-primary">Dar de alta</button>
+				</div>
+				<form th:action="@{/logout}" method="post" class="d-flex m-0">
+					<button class="btn btn-outline-success logout-btn" type="submit">Log Out</button>
 				</form>
+				<button class="navbar-toggler ms-4" type="button" data-bs-toggle="offcanvas"
+					data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 			</div>
+		</nav>
+
+	<div class="container" style="margin-top: 75px;">
+		<h1 class="text-uppercase text-center py-2 my-3">
+            Stock
+            <small class="fs-3 text-body-secondary">Alta de nuevo lote de stock</small>
+        </h1>
+		<div class="container">
+			<form action="#" th:action="@{/stock/create}" th:object="${stock}"
+				method="post" class="bg-success-subtle rounded px-5 py-3 mx-auto row shadow">
+				<div class="form-group mb-3 mt-2">
+					<label class="fw-medium">Selecciona un producto</label> <select class="form-control"
+						th:field="*{productId}">
+						<option th:each="product : ${products}" th:value="${product.id}"
+							th:text="${product.name}"></option>
+					</select>
+				</div>
+				<div class="form-group mb-3">
+					<label>Selecciona un proveedor</label> <select
+						class="form-control" th:field="*{supplierId}">
+						<option th:each="supplier : ${suppliers}"
+							th:value="${supplier.id}"
+							th:text="${supplier.name + ' '+ supplier.lastname}"></option>
+					</select>
+				</div>
+				<div class="form-group mb-3 mt-2">
+					<label>Ingresa el precio de compra</label> <input type="number"
+						class="form-control" placeholder="Ingresa el precio de compra"
+						th:field="*{purchasePrice}">
+				</div>
+				<div class="form-group mb-3 mt-2">
+					<label>Ingresa la cantidad recibida</label> <input type="number"
+						class="form-control" placeholder="Ingresa la cantidad recibida"
+						th:field="*{receivedAmount}">
+				</div>
+				<div class="d-flex justify-content-center">
+					<a th:href="@{/stock/index}"
+						class="my-3 me-3 btn btn-outline-secondary fw-medium text-uppercase">Volver</a>
+					<button type="submit" class="my-3 btn btn-outline-primary fw-medium text-uppercase">Dar de
+						alta</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </body>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</html>

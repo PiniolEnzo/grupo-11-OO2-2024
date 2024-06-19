@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,8 +54,8 @@ public class ProductController {
 	@GetMapping("/{id}")
 	public ModelAndView get(@PathVariable("id") int id) throws Exception {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_UPDATE);
-		Product product = productService.findById(id).get();
-		mAV.addObject("product", product);
+		ProductDTO productDTO = modelMapper.map(productService.findById(id), ProductDTO.class);
+		mAV.addObject("product", productDTO);
 		return mAV;
 	}
 
@@ -76,15 +77,15 @@ public class ProductController {
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/update")
-	public RedirectView update(Product product) throws Exception {
-		Product productToUpdate = productService.findById(product.getId()).get();
+	public RedirectView update(@ModelAttribute("product") ProductDTO productDTO) {
+		Product productToUpdate = modelMapper.map(productService.findById(productDTO.getId()).get(), Product.class);
 		if(productToUpdate != null ) {
-			productToUpdate.setName(product.getName());
-			productToUpdate.setDescription(product.getDescription());
-			productToUpdate.setAmount(product.getAmount());
-			productToUpdate.setMinimalAmount(product.getMinimalAmount());
-			productToUpdate.setPurchaseCost(product.getPurchaseCost());
-			productToUpdate.setSalePrice(product.getSalePrice());
+			productToUpdate.setName(productDTO.getName());
+			productToUpdate.setDescription(productDTO.getDescription());
+			productToUpdate.setAmount(productDTO.getAmount());
+			productToUpdate.setMinimalAmount(productDTO.getMinimalAmount());
+			productToUpdate.setPurchaseCost(productDTO.getPurchaseCost());
+			productToUpdate.setSalePrice(productDTO.getSalePrice());
 			productService.insertOrUpdate(productToUpdate);
 		}
 		return new RedirectView(ViewRouteHelper.PRODUCT_ROOT);
@@ -95,5 +96,13 @@ public class ProductController {
 	public RedirectView delete(@PathVariable("id") int id) {
 		productService.remove(id);
 		return new RedirectView(ViewRouteHelper.PRODUCT_ROOT);
+	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/report")
+	public ModelAndView reportView() {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCT_REPORT);
+		mAV.addObject("products", productService.getAll());
+		return mAV;
 	}
 }

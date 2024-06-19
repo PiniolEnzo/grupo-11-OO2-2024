@@ -1,5 +1,6 @@
 package com.grupo11tpc.tpc.controllers;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,13 +22,15 @@ public class SupplierController {
 		this.supplierService = supplierService;
 	}
 	
-	@GetMapping("")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/index")
 	public ModelAndView index() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.SUPPLIER_INDEX);
 		mAV.addObject("suppliers", supplierService.getAll());
 		return mAV;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/new")
 	public ModelAndView create() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.SUPPLIER_NEW);
@@ -35,25 +38,15 @@ public class SupplierController {
 		return mAV;
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/create")
 	public RedirectView create(Supplier supplier) {
 		supplierService.insertOrUpdate(supplier);
 		return new RedirectView(ViewRouteHelper.SUPPLIER_ROOT);
 	}
-	
-	@PostMapping("/update")
-	public RedirectView update(Supplier supplier) throws Exception {
-		Supplier supplierToUpdate = supplierService.findById((int) supplier.getId()).get();
-		if(supplierToUpdate != null ) {
-			supplierToUpdate.setName(supplier.getName());
-			supplierToUpdate.setLastname(supplier.getLastname());
-			supplierToUpdate.setPhoneNumber(supplier.getPhoneNumber());
-			supplierService.insertOrUpdate(supplierToUpdate);
-		}
-		return new RedirectView(ViewRouteHelper.SUPPLIER_ROOT);
-	}
 
-	@PostMapping("/delete/{id}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/delete/{id}")
 	public RedirectView delete(@PathVariable("id") int id) {
 		supplierService.remove(id);
 		return new RedirectView(ViewRouteHelper.SUPPLIER_ROOT);

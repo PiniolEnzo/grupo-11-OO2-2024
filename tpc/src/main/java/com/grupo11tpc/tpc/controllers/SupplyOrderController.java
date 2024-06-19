@@ -21,9 +21,9 @@ import com.grupo11tpc.tpc.services.ISupplyOrderService;
 @RequestMapping("/supply-order") 
 public class SupplyOrderController { 
 	
-	private ISupplyOrderService supplyOrderService;
-	private IProductService productService; 
-	private ISupplierService supplierService; 
+	public ISupplyOrderService supplyOrderService;
+	public IProductService productService; 
+	public ISupplierService supplierService; 
 	private ModelMapper modelMapper = new ModelMapper(); 
 	
 	public SupplyOrderController(ISupplyOrderService supplyOrderService, IProductService productService, ISupplierService supplierService) { 
@@ -33,7 +33,7 @@ public class SupplyOrderController {
 	} 
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@GetMapping("/index") 
+	@GetMapping("") 
 	public ModelAndView index() { 
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.SUPPLY_ORDER_INDEX); 
 		mAV.addObject("supplyOrders", supplyOrderService.getAll()); 
@@ -53,7 +53,7 @@ public class SupplyOrderController {
 	@PostMapping("/create") 
 	public RedirectView create(@ModelAttribute("supplyOrder") SupplyOrderDTO supplyOrderDto) { 
 		supplyOrderService.insert(modelMapper.map(supplyOrderDto, SupplyOrderDTO.class)); 
-		return new RedirectView(ViewRouteHelper.PRODUCT_ENTRY_INDEX); 
+		return new RedirectView(ViewRouteHelper.SUPPLY_ORDER_ROOT); 
 	} 
 	
 }
